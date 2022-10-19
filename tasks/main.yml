@@ -1,0 +1,28 @@
+---
+- name: Create overleaf data dir
+  become: yes
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode }}"
+    recurse: "{{ item.recurse }}"
+  with_items:
+    - { path: "{{ overleaf_mongodb_datadir }}", recurse: no, mode: '0777'}
+    - { path: "{{ overleaf_redis_datadir }}", recurse: no, mode: '0777'}
+    - { path: "{{ sharelatex_datadir }}", recurse: no, mode: '0777'}
+
+- name: Create overleaf configuration files
+  become: yes
+  template:
+    src: "{{ item.name }}.j2"
+    dest: "{{ item.path }}/{{ item.name }}"
+    mode: "{{ item.mode }}"
+    group: docker
+  with_items:
+    - { name: docker-compose-overleaf.yml, path: "{{ node_home }}", mode: '0644' }
+    - { name: sharelatex.env, path: "{{ node_home }}", mode: '0755' }
+    - { name: overleaf_start.sh, path: "{{ node_home }}", mode: '0755' }
+
+- name: Run the containers
+  become: yes
+  command: "bash {{ node_home }}/overleaf_start.sh"

@@ -1,0 +1,10 @@
+galaxy_info:
+  role_name: overleaf
+  author: Idriss Neumann
+  description: Configure an overleaf instance
+  company: Comwork
+
+  min_ansible_version: 2.2
+
+  platforms:
+    - name: CentOS

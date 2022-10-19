@@ -1,0 +1,36 @@
+version: '3.3'
+
+services:
+  sharelatex:
+    restart: always
+    image: {{ sharelatex_image }}
+    container_name: sharelatex
+    ports:
+      - {{ sharelatex_port }}:80
+    depends_on:
+      - mongo
+      - redis
+    links:
+      - mongo
+      - redis
+    volumes:
+      - {{ sharelatex_datadir }}:/var/lib/sharelatex
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - sharelatex.env
+  mongo:
+    restart: always
+    image: {{ overleaf_mongodb_image }}
+    container_name: {{ overleaf_mongodb_host }}
+    expose:
+      - {{ overleaf_mongodb_port }}
+    volumes:
+      - {{ overleaf_mongodb_datadir }}:/data/db
+  redis:
+    restart: always
+    image: {{ overleaf_redis_image }}
+    container_name: {{ overleaf_redis_host }}
+    expose:
+      - {{ overleaf_redis_port }}
+    volumes:
+      - {{ overleaf_redis_datadir }}:/data

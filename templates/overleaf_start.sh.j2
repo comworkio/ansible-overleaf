@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+FORCE_RECREATE_OPT=""
+FORCE_RECREATE_FLAG="{{ overleaf_force_recreate }}"
+[[ $FORCE_RECREATE_FLAG = "True" ]] && FORCE_RECREATE_OPT="--force-recreate"
+
+COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose -f {{ node_home }}/docker-compose-overleaf.yml up -d $FORCE_RECREATE_OPT

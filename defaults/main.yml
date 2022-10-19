@@ -1,0 +1,14 @@
+---
+sharelatex_appname: Overleaf comwork cloud edition
+sharelatex_image: sharelatex/sharelatex
+sharelatex_port: 8080
+sharelatex_datadir: /home/centos/sharelatex_data
+overleaf_redis_datadir: /home/centos/overleaf_redis_data
+overleaf_mongodb_datadir: /home/centos/overleaf_mongodb_data
+overleaf_mongodb_host: overleaf_mongodb
+overleaf_mongodb_image: mongo:4.4
+overleaf_mongodb_port: 27017
+overleaf_redis_image: redis:5
+overleaf_redis_port: 6379
+overleaf_redis_host: overleaf_redis
+overleaf_force_recreate: true
