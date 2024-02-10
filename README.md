@@ -7,6 +7,5 @@ This role is used by our Overleaf as a service offer: https://doc.cloud.comwork.
 ## Git repositories
 
 * Main repo: https://gitlab.comwork.io/oss/ansible-iac/overleaf.git
-* Github mirror: https://github.com/idrissneumann/ansible-overleaf.git
+* Github mirror: https://github.com/comworkio/ansible-overleaf.git
 * Gitlab mirror: https://gitlab.com/ineumann/ansible-overleaf.git
-* Froggit mirror: https://lab.frogg.it/ineumann/ansible-overleaf.git
